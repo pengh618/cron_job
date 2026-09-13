@@ -1,0 +1,23 @@
+# 依赖
+node_modules
+
+# 构建产物
+.next
+out
+build
+AGENT.MD
+# 环境变量（.env.example 保留入库作为模板）
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 杂项
+.DS_Store
+*.pem
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tsbuildinfo
+next-env.d.ts
