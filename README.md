@@ -146,7 +146,7 @@ Vercel Cron 会自动在请求头携带 `Authorization: Bearer ${CRON_SECRET}`�
 
 - **登录后提示无权访问**：确认登录邮箱与 `ADMIN_EMAIL`、Supabase RLS 策略中的邮箱三者一致
 - **任务列表加载失败**：确认已执行 `supabase/schema.sql` 且替换了策略中的管理员邮箱
-- **任务从不执行**：Vercel Hobby 计划不支持分钟级 Cron，参见上文替代方案；也可用 curl 手动触发验证
+- **任务从不执行 / 频率只有每天一次**：Hobby 计划下 `vercel.json` 默认每天心跳一次，分钟级调度需按上文配置外部 cron 服务或升级 Pro；也可用 curl 手动触发验证调度链路
 - **目标站点登录失败**：HTTP 表单登录适用于标准表单站点；依赖 JS 渲染 / 验证码 / 动态 CSRF 的站点暂不支持，可在 `lib/scheduler/executor.ts` 中扩展 Playwright 方案（注意 Vercel 函数超时与体积限制）
 
 ## 安全说明
