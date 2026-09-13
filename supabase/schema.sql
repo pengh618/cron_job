@@ -2,7 +2,7 @@
 -- URL 调度管理后台 - Supabase 建表 SQL
 -- 使用方法：Supabase Dashboard → SQL Editor → 粘贴本文件全部内容并执行
 --
--- 重要：执行前请将下方所有 'admin@example.com' 替换为你的管理员邮箱，
+-- 重要：执行前请将下方所有 'ADMIN_EMAIL' 替换为你的管理员邮箱，
 --       且必须与环境变量 ADMIN_EMAIL 保持一致（共 8 处，可全局替换）。
 -- =============================================================
 
@@ -51,42 +51,42 @@ alter table access_logs enable row level security;
 create policy "admin_select_url_tasks"
   on url_tasks for select
   to authenticated
-  using (lower(auth.jwt() ->> 'email') = lower('admin@example.com'));
+  using (lower(auth.jwt() ->> 'email') = lower('pdz300@163.com'));
 
 create policy "admin_insert_url_tasks"
   on url_tasks for insert
   to authenticated
-  with check (lower(auth.jwt() ->> 'email') = lower('admin@example.com'));
+  with check (lower(auth.jwt() ->> 'email') = lower('pdz300@163.com'));
 
 create policy "admin_update_url_tasks"
   on url_tasks for update
   to authenticated
-  using (lower(auth.jwt() ->> 'email') = lower('admin@example.com'))
-  with check (lower(auth.jwt() ->> 'email') = lower('admin@example.com'));
+  using (lower(auth.jwt() ->> 'email') = lower('pdz300@163.com'))
+  with check (lower(auth.jwt() ->> 'email') = lower('pdz300@163.com'));
 
 create policy "admin_delete_url_tasks"
   on url_tasks for delete
   to authenticated
-  using (lower(auth.jwt() ->> 'email') = lower('admin@example.com'));
+  using (lower(auth.jwt() ->> 'email') = lower('pdz300@163.com'));
 
 -- access_logs：查 / 增 / 改 / 删
 create policy "admin_select_access_logs"
   on access_logs for select
   to authenticated
-  using (lower(auth.jwt() ->> 'email') = lower('admin@example.com'));
+  using (lower(auth.jwt() ->> 'email') = lower('pdz300@163.com'));
 
 create policy "admin_insert_access_logs"
   on access_logs for insert
   to authenticated
-  with check (lower(auth.jwt() ->> 'email') = lower('admin@example.com'));
+  with check (lower(auth.jwt() ->> 'email') = lower('pdz300@163.com'));
 
 create policy "admin_update_access_logs"
   on access_logs for update
   to authenticated
-  using (lower(auth.jwt() ->> 'email') = lower('admin@example.com'))
-  with check (lower(auth.jwt() ->> 'email') = lower('admin@example.com'));
+  using (lower(auth.jwt() ->> 'email') = lower('pdz300@163.com'))
+  with check (lower(auth.jwt() ->> 'email') = lower('pdz300@163.com'));
 
 create policy "admin_delete_access_logs"
   on access_logs for delete
   to authenticated
-  using (lower(auth.jwt() ->> 'email') = lower('admin@example.com'));
+  using (lower(auth.jwt() ->> 'email') = lower('pdz300@163.com'));

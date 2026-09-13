@@ -59,7 +59,7 @@ supabase/schema.sql        # 建表 + RLS 策略 SQL
 ### 2. 执行建表 SQL
 
 1. 打开 Supabase Dashboard → **SQL Editor**
-2. **先全局替换** `supabase/schema.sql` 中的 `admin@example.com` 为你的管理员邮箱（共 8 处）
+2. **先全局替换** `supabase/schema.sql` 中的 `` 为你的管理员邮箱（共 8 处）
 3. 粘贴全部内容并执行，将创建 `url_tasks`、`access_logs` 两张表及 RLS 策略
 
 ### 3. 创建管理员账号

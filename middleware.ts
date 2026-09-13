@@ -11,7 +11,19 @@ const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
  * 注意：/api/* 不经过此中间件，调度接口由 CRON_SECRET 单独保护
  */
 export async function middleware(request: NextRequest) {
-  const { response, user } = await updateSession(request);
+  let response: NextResponse;
+  let user: Awaited<ReturnType<typeof updateSession>>["user"] | null;
+
+  // 环境变量缺失等配置错误：返回明确提示，避免每个请求抛出模糊 500
+  try {
+    ({ response, user } = await updateSession(request));
+  } catch (err) {
+    return new NextResponse(
+      err instanceof Error ? err.message : "服务器配置错误，请检查环境变量",
+      { status: 500 }
+    );
+  }
+
   const path = request.nextUrl.pathname;
 
   if (path.startsWith("/dashboard")) {

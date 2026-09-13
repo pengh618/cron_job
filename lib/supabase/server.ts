@@ -1,5 +1,6 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { getSupabaseEnv } from "./env";
 
 /**
  * 服务端 Supabase 客户端（携带用户会话 Cookie，受 RLS 约束）
@@ -7,11 +8,9 @@ import { cookies } from "next/headers";
  */
 export function createClient() {
   const cookieStore = cookies();
+  const { url, anonKey } = getSupabaseEnv();
 
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
+  return createServerClient(url, anonKey, {
       cookies: {
         getAll() {
           return cookieStore.getAll();
